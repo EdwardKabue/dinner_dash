@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121192934) do
+ActiveRecord::Schema.define(version: 20141122211757) do
+
+  create_table "addresses", force: true do |t|
+    t.integer  "street_number"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carts", force: true do |t|
     t.integer  "item_count"
@@ -39,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141121192934) do
     t.boolean  "pickup"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
