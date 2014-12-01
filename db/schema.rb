@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124185950) do
+ActiveRecord::Schema.define(version: 20141201160546) do
 
   create_table "addresses", force: true do |t|
     t.integer  "street_number"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141124185950) do
   create_table "line_items", force: true do |t|
     t.integer  "cart_id"
     t.integer  "item_id"
-    t.integer  "quantity"
+    t.integer  "quantity",   default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,9 +69,13 @@ ActiveRecord::Schema.define(version: 20141124185950) do
     t.string   "email"
     t.string   "full_name"
     t.string   "display_name"
-    t.string   "password"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",           default: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["full_name", "display_name"], name: "index_users_on_full_name_and_display_name", unique: true
 
 end
