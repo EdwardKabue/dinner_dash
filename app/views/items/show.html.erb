@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<table>
+	<th></th>
+	<th></th>
+	<tbody>
+		<tr>
+			<td><%= @item.photo %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><%= @item.title %></td>
+			<td><%= @item.description %></td>
+		</tr>
+	</tbody>
+</table>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

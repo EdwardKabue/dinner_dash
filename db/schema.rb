@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201160546) do
+ActiveRecord::Schema.define(version: 20150108173952) do
 
   create_table "addresses", force: true do |t|
     t.integer  "street_number"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141201160546) do
     t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "carts", force: true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141201160546) do
     t.binary   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "retired"
   end
 
   create_table "line_items", force: true do |t|
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 20141201160546) do
     t.integer  "quantity",   default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "orders", force: true do |t|
@@ -63,6 +66,12 @@ ActiveRecord::Schema.define(version: 20141201160546) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "ordered"
+    t.boolean  "cancelled"
+    t.boolean  "completed"
+    t.boolean  "paid"
+    t.datetime "completed_at"
+    t.datetime "cancelled_at"
   end
 
   create_table "users", force: true do |t|
