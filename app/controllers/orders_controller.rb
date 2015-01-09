@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart , only: [:create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :is_user_signed_in?, only: [:create]
 
   # GET /orders
   # GET /orders.json
@@ -70,6 +71,26 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  #Custom actions for the completion and cancellation of an order
+
+  def complete
+    if @order.ordered && @order.paid
+      @order.update_attributes(:completed_at => Time.now, :completed => true)
+      redirect_to @order
+    else 
+      redirect_to @order
+    end  
+  end
+
+  def cancel
+    if @order.completed
+      redirect_to @order
+    else  
+      @order.update_attributes(:cancelled_at => TIme.mow, :cancelled => true)
+      redirect_to @order
+    end 
   end
 
   private

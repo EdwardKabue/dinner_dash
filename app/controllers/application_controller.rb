@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
 	  def logged_in?
 	  	!current_user.nil?
 	  end	
+
+	  def is_user_signed_in?
+	  	if !logged_in?
+	  		redirect_to :controller => 'session', :action => 'new'
+	  	end
+	  end		
+
 end
