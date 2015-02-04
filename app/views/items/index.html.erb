@@ -12,14 +12,30 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '#{item.title}', item %></td>
+        
+          <td>
+            <% if is_user_admin? %>
+              <%= link_to 'Edit', edit_item_path(item) %>
+            <% end %>
+          </td>
+          <td>
+            <% if is_user_admin? %>
+              <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>  
+          </td>
+          
+            <td>
+              <% if is_user_admin? && @category %>
+                <%= button_to 'Add this item to the #{@category.title} category', categorisations_path(item_id: item.id, category_id: @category.id ) %>
+              <% end %>   
+            </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+<br/>
+<% if is_user_admin? %>
+ <%= link_to 'New Item', new_item_path %>
+<% end %>

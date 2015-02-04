@@ -1,7 +1,7 @@
 class Cart < ActiveRecord::Base
 	belongs_to :order
 	has_many :line_items
-	has_many :items :through => :line_items
+	has_many :items, :through => :line_items
 
 	def add_item(item_id)
 		new_item = line_items.find_by(item_id: item_id)

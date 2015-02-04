@@ -1,4 +1,22 @@
 <p id="notice"><%= notice %></p>
+<table>
+	<thead>
+		<th></th>
+	</thead>
+	<tbody>
+	<% @categorisations.each do |categorisation| %>
+		<tr>
+			<td> <%= link_to "#{categorisation.item.title}", categorisation.item %> </td>
+			<% if is_user_admin? %>
+				<td><%= link_to 'Destroy', categorisation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
+<% if is_user_admin? %>
+	<%= link_to 'Choose an item to add to this category.', items_path(category_id: @category.id) %>
+	<%= link_to 'Edit', edit_category_path(@category) %> |
+<% end %>	
 <%= link_to 'Back', categories_path %>

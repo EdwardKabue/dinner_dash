@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
 <table>
 	<thead>
 		<tr>
+			<th></th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -11,20 +11,17 @@
 		<% @order_items.each do |order_item| %>
 		<tr>
 			<td>Quantity: <%= order_item.quantity %></td>
-			<td>Subtotal cost: <%= order_item.quantity * order_item.item.price %></td>
-			<td><%= link_to "Item description", order_item.item %></td>
+			<td>Subtotal: <%= order_item.quantity * order_item.item.price %></td>
+			<td><%= link_to "#{order_item.item.title}", order_item.item %></td>
+			<td>Total cost: <%= @total_order_price %></td>		
 		</tr>
 		<% end %>
 			<tr>
-				<td>Total cost: <%= @total_order_price %></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
 				<td>Order status:</td>
 				<td>
-					<p>Ordered on: <%= @order.created_at%></p>
-					<% if @order.paid %>
+					<% if @order.ordered %>
+						<p>Ordered on: <%= @order.created_at%></p>
+					<% elsif @order.paid %>
 						<p>Paid</p>
 					<% elsif @order.cancelled %>
 						<p>Cancelled on: <%= @order.cancelled_at %></p>
@@ -33,9 +30,7 @@
 					<% end %>
 				</td>
 				<td></td>
+				<td></td>
 			</tr>
 	</tbody>
 </table>
-		
-<%= link_to 'Back', orders_path %>
-

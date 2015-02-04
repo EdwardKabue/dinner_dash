@@ -9,7 +9,51 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> 
+
+  <div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :ordered, value: 'true' %>
+  </div>
+  
+  <div>
+    <%= f.radio_button :pickup_or_delivery, 'true' %>
+    <%= f.label :pickup_or_delivery_true, 'Do you want to pick it up?' %>
+  </div>
+
+  <div>
+    <%= f.radio_button :pickup_or_delivery, 'false' %>
+    <%= f.label :pickup_or_delivery_false, 'Or would you rather have it delivered?' %>
+  </div>
+
+  <div>
+    <%= f.fields_for @address do |address_field| %>
+    
+      <div>
+        <p><%= address_field.label :city %></p>
+        <%= address_field.text_field :city %>
+      </div>
+
+      <div>
+        <p><%= address_field.label :state %></p>
+        <%= address_field.text_field :state %>
+      </div>
+
+      <div>
+        <p><%= address_field.label :zip %></p>
+        <%= address_field.text_field :zip %>
+      </div>
+
+      <div>
+        <p><%= address_field.label :street_number %></p>
+        <%= address_field.text_field :street_number %>
+      </div>
+
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

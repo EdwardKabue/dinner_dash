@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108173952) do
+ActiveRecord::Schema.define(version: 20150128081628) do
 
   create_table "addresses", force: true do |t|
     t.integer  "street_number"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150108173952) do
     t.datetime "updated_at"
   end
 
+  add_index "categories", ["title"], name: "index_categories_on_title", unique: true
+
   create_table "categorisations", force: true do |t|
     t.integer  "category_id"
     t.integer  "item_id"
@@ -45,11 +47,16 @@ ActiveRecord::Schema.define(version: 20150108173952) do
     t.string   "title"
     t.text     "description"
     t.float    "price"
-    t.binary   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "retired"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
+
+  add_index "items", ["title"], name: "index_items_on_title", unique: true
 
   create_table "line_items", force: true do |t|
     t.integer  "cart_id"
@@ -61,8 +68,7 @@ ActiveRecord::Schema.define(version: 20150108173952) do
   end
 
   create_table "orders", force: true do |t|
-    t.boolean  "delivery"
-    t.boolean  "pickup"
+    t.boolean  "pickup_or_delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

@@ -2,16 +2,11 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart , only: [:create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :is_user_signed_in?, only: [:create]
-
+  
   # GET /orders
   # GET /orders.json
   def index
-    if current_user.admin
-      @orders = Order.all
-     else 
-      @orders = current_user.orders.all
-    end  
+    @orders = current_user.orders.all  
   end
 
   # GET /orders/1
@@ -27,6 +22,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @address = Address.new
   end
 
   # GET /orders/1/edit
@@ -73,25 +69,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  #Custom actions for the completion and cancellation of an order
 
-  def complete
-    if @order.ordered && @order.paid
-      @order.update_attributes(:completed_at => Time.now, :completed => true)
-      redirect_to @order
-    else 
-      redirect_to @order
-    end  
-  end
-
-  def cancel
-    if @order.completed
-      redirect_to @order
-    else  
-      @order.update_attributes(:cancelled_at => TIme.mow, :cancelled => true)
-      redirect_to @order
-    end 
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -101,6 +79,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order]
+      params.require(:order).permit(:ordered, :user_id, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number])
     end
 end

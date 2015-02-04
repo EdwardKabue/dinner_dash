@@ -4,15 +4,28 @@
 	<th></th>
 	<tbody>
 		<tr>
-			<td><%= @item.photo %></td>
-			<td></td>
+			<td><%= image_tag @item.photo.url(:medium) %></td>
+			<td>
+				<h2><%= @item.title %></h2>
+				<p><%= @item.description %></p>
+				<p>Price: <%= @item.price %></p>
+			</td>
 		</tr>
 		<tr>
-			<td><%= @item.title %></td>
-			<td><%= @item.description %></td>
+			<td>
+				<% if !item.retired %>
+					<%= button_to "Add to cart", line_items_path(item_id: @item) %>
+				<% end %>
+			</td>
+			<td>
+				<% if is_user_admin? %>
+					<%= link_to "Retire this item.", retire_path(@item), method: :post, data: {confirm: "Are you sure?"} %> 
+				<% end %>
+			</td>	
 		</tr>
 	</tbody>
 </table>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
+<% if is_user_admin? %>
+	<%= link_to 'Edit', edit_item_path(@item) %> |
+<% end %>	
 <%= link_to 'Back', items_path %>

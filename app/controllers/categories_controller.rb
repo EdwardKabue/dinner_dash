@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update, :destroy]
   # GET /categories
   # GET /categories.json
   def index
@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category_items = @category.items.all
+    @categorisations = @category.categorisations.all
   end
 
   # GET /categories/new
@@ -70,6 +70,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params[:category]
+      params.require(:category).permit(:title)
     end
 end

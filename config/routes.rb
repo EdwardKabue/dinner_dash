@@ -4,11 +4,23 @@ DinnerDash::Application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :line_items
   resources :items
+  resources :admin_dash_board, only: [:index, :show] do
+    member do
+      get 'mark_as_completed'
+      get 'mark_as_paid'
+      get 'cancel'
+    end
+  end
+  
   resources :orders
+  
+  resources :categorisations, only: [:create, :destroy]
+  resources :categories
 
   match '/register', to: "users#new", via: :get
   match 'login', to: "sessions#new", via: :get
   match 'logout', to: "sessions#destroy", via: :delete
+  #match 'retire', to: "items#retire", via: :post
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
