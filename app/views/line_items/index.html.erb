@@ -14,8 +14,8 @@
   <tbody>
     <% @line_items.each do |line_item| %>
       <tr>
-        <td><%= link_to 'Show', line_item %></td>
-        <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
+        <td><%= link_to 'Show', item_path(line_item.item) %></td>
+        <!--<td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>-->
         <td><%= link_to 'Remove from cart', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= button_to 'Add one more of this item.', line_items_path(item_id: line_item.item_id) %> </td>    
       </tr>

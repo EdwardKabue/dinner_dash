@@ -10,10 +10,12 @@
       </ul>
     </div>
   <% end %>
-  <%= f.text_field :name %>
-  <%= f.text_field :description %>
-  <%= f.text_field :price %>
-  <%= f.file_field :photo %>
+  <%= f.text_field :title %><br/>
+  <%= f.text_field :description %><br/>
+  <%= f.text_field :price %><br/>
+  <%= f.file_field :photo %><br/>
+  <%= f.label :category_ids, "Categories" %><br/>
+  <%= f.collection_select :category_ids, Category.all, :id, :title, {}, {multiple: true} %>
 
   <div class="actions">
     <%= f.submit %>

@@ -1,9 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  delivery: false
-  pickup: false
+  created_at: <%= Time.now %>
+  user: andy
+  pickup_or_delivery: false
+  ordered: true
+  cancelled: false
+  completed: false
+  paid: false
+  completed_at: <%= Time.now %>
+  cancelled_at: <%= Time.now %>
+  
+  
 
 two:
-  delivery: false
-  pickup: false
+  created_at: <%= Time.now %>
+  user: edward
+  pickup_or_delivery: false
+  ordered: true
+  cancelled: false
+  completed: false
+  paid: false
+  completed_at: <%= Time.now %>
+  cancelled_at: <%= Time.now %>

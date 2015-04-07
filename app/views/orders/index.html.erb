@@ -29,6 +29,6 @@
 </table>
 
 <br>
-<% if logged_in? && cart_items %>
-  <%= link_to 'New Order', new_order_path %>
+<% if logged_in? && !@cart.line_items.empty? %>
+  <%= link_to 'Place an order', new_order_path %>
 <% end %>

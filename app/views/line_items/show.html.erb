@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+<table>
+	<thead>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody>
+		<td><%= image_tag @line_item.item.photo.url(:medium) %></td>
+		<td>
+			<h2><%= @line_item.item.title %></h2>
+			<p><%= @line_item.item.description %></p>
+			<p>Price: <%= @line_item.item.price %></p>
+		</td>
+	</tbody>
+</table>
+<!--<%= link_to 'Edit', edit_line_item_path(@line_item) %> |-->
 <%= link_to 'Back', line_items_path %>

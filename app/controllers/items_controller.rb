@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   include CurrentCart
   before_action :set_item, only: [:show, :edit, :update, :destroy, :retire]
-  before_action :redirect_if_not_admin, only: [:new ,:create, :retire, :destroy]
+  before_action :redirect_if_not_admin, only: [:new, :edit, :update, :create, :retire, :destroy]
   # GET /items
   # GET /items.json
   def index
@@ -58,16 +58,11 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    if LineItem.find_by(item_id: @item.id)
-      flash[:alert] = "This item has already been added to a cart."
-      redirect_to :back
-    else  
       @item.destroy
       respond_to do |format|
         format.html { redirect_to items_url }
         format.json { head :no_content }
       end
-    end  
   end
 
   #Custom action for retiring an item
@@ -85,6 +80,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :price, :photo)
+      params.require(:item).permit(:title, :description, :price, :photo, :category_ids)
     end
 end

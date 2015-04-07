@@ -3,7 +3,11 @@ DinnerDash::Application.routes.draw do
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create]
   resources :line_items
-  resources :items
+  resources :items do
+    member do
+      get 'retire'
+    end
+  end  
   resources :admin_dash_board, only: [:index, :show] do
     member do
       get 'mark_as_completed'

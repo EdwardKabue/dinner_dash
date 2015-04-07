@@ -5,9 +5,11 @@ one:
   city: MyString
   state: MyString
   zip: MyString
+  order: one
 
 two:
-  street_number: 1
+  street_number: 2
   city: MyString
   state: MyString
   zip: MyString
+  order: two

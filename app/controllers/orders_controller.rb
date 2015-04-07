@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :set_cart , only: [:create]
+  before_action :set_cart , only: [:index,:new, :create, :update]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   
   # GET /orders
@@ -13,16 +13,13 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order_items = @order.line_items.all
-    @total_order_price = 0
-    @order_items.each do |order_item|
-      @total_order_price += order_item.quantity * order_item.item.price
-    end
   end
 
   # GET /orders/new
   def new
     @order = Order.new
-    @address = Address.new
+    #@address = Address.new
+    @order.build_address
   end
 
   # GET /orders/1/edit
@@ -32,7 +29,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = @cart.line_items.order.new(order_params)
+    @order = Order.new(order_params)
 
     respond_to do |format|
       if @order.save
@@ -79,6 +76,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ordered, :user_id, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number])
+      params.require(:order).permit(:user_id, :ordered, :line_item_ids, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number])
     end
 end

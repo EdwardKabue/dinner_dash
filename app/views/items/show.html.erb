@@ -13,19 +13,19 @@
 		</tr>
 		<tr>
 			<td>
-				<% if !item.retired %>
-					<%= button_to "Add to cart", line_items_path(item_id: @item) %>
+				<% if !@item.retired %>
+					<%= button_to "Add to cart", line_items_path(item_id: @item.id) %>
 				<% end %>
 			</td>
 			<td>
-				<% if is_user_admin? %>
-					<%= link_to "Retire this item.", retire_path(@item), method: :post, data: {confirm: "Are you sure?"} %> 
+				<% if is_user_admin? && !@item.retired %>
+					<%= link_to "Retire this item.", retire_item_path(@item), method: :post, data: {confirm: "Are you sure?"} %> 
 				<% end %>
 			</td>	
 		</tr>
 	</tbody>
 </table>
-<% if is_user_admin? %>
+<% if is_user_admin? && !@item.retired %>
 	<%= link_to 'Edit', edit_item_path(@item) %> |
 <% end %>	
 <%= link_to 'Back', items_path %>

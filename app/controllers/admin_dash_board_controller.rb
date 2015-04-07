@@ -9,11 +9,7 @@ class AdminDashBoardController < ApplicationController
 	end
 
 	def show
-		@order_items = @order.line_items.all
-		@total_order_price = 0
-	    @order_items.each do |order_item|
-	      @total_order_price += order_item.quantity * order_item.item.price
-	    end	
+			
 	end
 
 	#Custom actions for an order
@@ -21,22 +17,23 @@ class AdminDashBoardController < ApplicationController
 	def mark_as_completed
 	   @order.update_attributes(:completed_at => Time.now, :completed => true)
 	   flash[:notice] = "This order has been completed."
-	   redirect_to @order
+	   redirect_to admin_dash_board_path(@order)
 	end
 
 	def cancel
-	   @order.update_attributes(:cancelled_at => Time.mow, :cancelled => true)
+	   @order.update_attributes(:cancelled_at => Time.now, :cancelled => true)
 	   flash[:notice] = "This order has been cancelled."
-	   redirect_to @order
+	   redirect_to admin_dash_board_path(@order)
 	end 
 
 	def mark_as_paid
 	   @order.update(:paid => true)
 	   flash[:notice] = "This order has been paid for."
-	   redirect_to @order
+	   redirect_to admin_dash_board_path(@order)
     end
 
 	private
+	
 	def set_order
 	   @order = Order.find(params[:id])
 	end
