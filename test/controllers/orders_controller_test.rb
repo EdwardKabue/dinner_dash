@@ -20,9 +20,9 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should create order" do
     login(:andy)
-    
+    set_cart(:one)
     assert_difference('Order.count') do
-      post :create, order: { user_id: users(:andy).id, ordered: true, line_item_ids: carts(:one).line_item_ids, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
+      post :create, order: { user_id: users(:andy).id, ordered: true, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
     end
 
 
@@ -41,8 +41,8 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should update order" do
     login(:edward)
-    set_cart(@cart)
-    patch :update, id: @order, order: { ordered: "true", user_id: session[:user_id], line_item_ids: @cart.line_item_ids, pickup_or_delivery: "false" }
+    set_cart(:one)
+    patch :update, id: @order, order: { ordered: "true", user_id: session[:user_id], pickup_or_delivery: "false", address_attributes: addresses(:two).attributes, line_items_attributes: [{id: line_items(:one).id, _destroy: 1}] }
     assert_redirected_to order_path(assigns(:order))
   end
 

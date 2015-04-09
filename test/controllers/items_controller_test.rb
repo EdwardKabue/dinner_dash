@@ -17,7 +17,7 @@ class ItemsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to controller: 'home', action: 'index'
   end
-=begin
+
   test "should create item" do
     login(:edward)
     assert_difference('Item.count') do
@@ -26,7 +26,7 @@ class ItemsControllerTest < ActionController::TestCase
 
     assert_redirected_to item_path(assigns(:item))
   end
-=end
+
   test "should show item" do
     get :show, id: @item
     assert_response :success

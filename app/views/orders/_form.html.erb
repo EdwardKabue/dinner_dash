@@ -15,11 +15,7 @@
   <div>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
-
-  <div>
-    <%= f.hidden_field :line_item_ids, value: @cart.line_item_ids %>
-  </div>
-
+ 
   <div>
     <%= f.hidden_field :ordered, value: true %>
   </div>
@@ -34,7 +30,7 @@
     <%= f.label :pickup_or_delivery_false, 'Or would you rather have it delivered?' %>
   </div>
 
-  <div>
+  <div id="address_fields">
     <%= f.fields_for :address do |address_field| %>
     
       <div>
@@ -59,6 +55,18 @@
 
     <% end %>
   </div>
+
+  <% if !@order_items.nil? %>
+    <div id="line_item_fields">
+      <%= f.fields_for :line_items do |line_item_field| %>
+        <div>
+          <%= line_item_field.label :_destroy, :title%> 
+          <%= line_item_field.checkbox :_destroy%>
+        </div>
+      <% end %>  
+    </div>
+  <% end %>  
+
 
   <div class="actions">
     <%= f.submit %>

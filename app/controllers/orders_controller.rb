@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     #@address = Address.new
     @order.build_address
+    @order_items = nil
   end
 
   # GET /orders/1/edit
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.line_item_ids = @cart.line_item_ids
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -45,6 +46,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @order_items = @order.line_items
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -76,6 +78,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :ordered, :line_item_ids, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number])
+      params.require(:order).permit(:user_id, :ordered, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number], line_items_attributes: [:_destroy])
     end
 end

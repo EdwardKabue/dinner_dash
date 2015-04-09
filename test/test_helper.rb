@@ -15,4 +15,9 @@ class ActiveSupport::TestCase
   def login(user)
   	@request.session[:user_id] = users(user).id
   end
+
+  def set_cart(cart)
+    @request.session[:cart_id] = carts(cart).id
+  end
+    
 end
