@@ -7,7 +7,7 @@ one:
   ordered: true
   cancelled: false
   completed: false
-  paid: false
+  paid: true
   completed_at: <%= Time.now %>
   cancelled_at: <%= Time.now %>
   

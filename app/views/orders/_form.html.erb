@@ -56,7 +56,7 @@
     <% end %>
   </div>
 
-  <% if !@order_items.nil? %>
+  <% if !@order_items.nil? && (@order.paid || !@order.paid) %>
     <div id="line_item_fields">
       <%= f.fields_for :line_items do |line_item_field| %>
         <div>
