@@ -1,6 +1,6 @@
 DinnerDash::Application.routes.draw do
   
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create]
   resources :line_items
   resources :items do

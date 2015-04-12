@@ -6,4 +6,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should create new user" do
+  	post :create, user: { full_name: "Edward Andrew", email: "edward@yahoo.com", password: "eduardo", password_confirmation: "eduardo" }
+  	assert_response :redirect
+  end
+
 end
