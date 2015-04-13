@@ -9,7 +9,7 @@ class AdminDashBoardController < ApplicationController
 	end
 
 	def show
-			
+		@order_items = @order.line_items	
 	end
 
 	#Custom actions for an order

@@ -35,6 +35,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    login(:edward)
     get :edit, id: @order
     assert_response :success
   end

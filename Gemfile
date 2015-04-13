@@ -9,12 +9,13 @@ gem 'bcrypt-ruby'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 group :test, :development do
-	#gem 'simplecov', :require => false
+	gem 'simplecov', :require => false
 	gem 'sqlite3'
 end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'annotate'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

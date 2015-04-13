@@ -12,13 +12,15 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    login(:edward)
     get :new
     assert_response :success
   end
 
   test "should create category" do
+    login(:edward)
     assert_difference('Category.count') do
-      post :create, category: {  }
+      post :create, category: { title: "Fluids" }
     end
 
     assert_redirected_to category_path(assigns(:category))
@@ -30,16 +32,19 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    login(:edward)
     get :edit, id: @category
     assert_response :success
   end
 
   test "should update category" do
-    patch :update, id: @category, category: {  }
+    login(:edward)
+    patch :update, id: @category, category: { title: "Dessert" }
     assert_redirected_to category_path(assigns(:category))
   end
 
   test "should destroy category" do
+    login(:edward)
     assert_difference('Category.count', -1) do
       delete :destroy, id: @category
     end

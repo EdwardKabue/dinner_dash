@@ -27,10 +27,10 @@ class ApplicationController < ActionController::Base
 	  	end	
 	  end	
 
-	  #def cart_items
-	  #	cart = Cart.find(session[:cart_id])
-	  #	!cart.line_items.empty?
-	  #end	
+	  def cart_items
+	  	cart = Cart.find(session[:cart_id])
+	  	!cart.line_items.empty?
+	  end	
 
 	  def redirect_if_not_admin
 	  	if !is_user_admin?

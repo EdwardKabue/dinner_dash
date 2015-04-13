@@ -18,7 +18,7 @@ class OrderTest < ActiveSupport::TestCase
   	order = Order.new
   	order.pickup_or_delivery = "true"
   	order.address = addresses(:two)
-  	order.user_id = users(:two).id
+  	order.user_id = users(:andy).id
 
   	assert_not order.save
   	assert_not order.errors[:line_items].empty?

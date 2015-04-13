@@ -40,7 +40,7 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should update item" do
     login(:edward)
-    patch :update, id: @item, item: {title: "Pizza", price: @item.price, description: @item.description, category_ids: @item.category_ids}
+    patch :update, id: @item, item: {title: "Pizza", price: @item.price, description: @item.description, category_ids: [categories(:one).id, categories(:two).id]}
     assert_redirected_to item_path(assigns(:item))
   end
 

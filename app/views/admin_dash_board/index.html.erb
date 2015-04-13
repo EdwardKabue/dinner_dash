@@ -14,9 +14,9 @@
 						<%= link_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", admin_dash_board_path(ordered_order) %>
 					</td>
 					<td>
-						<%= link_to "Cancel this order.", cancel_order_admin_dash_board_path(ordered_order) %> 
+						<%= link_to "Cancel this order.", cancel_admin_dash_board_path(ordered_order) %> 
 						<i>or</i> 
-						<%= link_to "Mark it as paid.", mark_as_paid_order_admin_dash_board_path(ordered_order) %>
+						<%= link_to "Mark it as paid.", mark_as_paid_admin_dash_board_path(ordered_order) %>
 					</td>
 				</tr>
 			<% end %>	
@@ -40,9 +40,9 @@
 						<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(paid_order) %>
 					</td>
 					<td>
-						<%= link_to "Mark this order as completed.", mark_as_completed_order_admin_dash_board_path(paid_order) %>
+						<%= link_to "Mark this order as completed.", mark_as_completed_admin_dash_board_path(paid_order) %>
 					 	<i>or</i> 
-					 	<%= link_to "Cancel it.", cancel_order_admin_dash_board_path(paid_order) %>
+					 	<%= link_to "Cancel it.", cancel_admin_dash_board_path(paid_order) %>
 					</td>
 				</tr>
 			<% end %>	

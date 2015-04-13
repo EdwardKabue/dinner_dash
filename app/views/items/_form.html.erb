@@ -10,11 +10,19 @@
       </ul>
     </div>
   <% end %>
+  <p><%= f.label :title%></p>
   <%= f.text_field :title %><br/>
+
+  <p><%= f.label :description%></p>
   <%= f.text_field :description %><br/>
+
+  <p><%= f.label :price %></p>
   <%= f.text_field :price %><br/>
+
+  <p><%= f.label :photo %></p>
   <%= f.file_field :photo %><br/>
-  <%= f.label :category_ids, "Categories" %><br/>
+  
+  <p><%= f.label :category_ids, "Categories" %><br/></p>
   <%= f.collection_select :category_ids, Category.all, :id, :title, {}, {multiple: true} %>
 
   <div class="actions">

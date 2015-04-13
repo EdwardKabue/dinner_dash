@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                 :integer          not null, primary key
+#  pickup_or_delivery :boolean
+#  created_at         :datetime
+#  updated_at         :datetime
+#  user_id            :integer
+#  ordered            :boolean
+#  cancelled          :boolean
+#  completed          :boolean
+#  paid               :boolean
+#  completed_at       :datetime
+#  cancelled_at       :datetime
+#
+
 class Order < ActiveRecord::Base
 	belongs_to :user
 	has_many :line_items
