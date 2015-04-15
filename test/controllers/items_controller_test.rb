@@ -3,6 +3,9 @@ require 'test_helper'
 class ItemsControllerTest < ActionController::TestCase
   setup do
     @item = items(:one)
+    @item_three = items(:three)
+    @category_one = categories(:one)
+    @category_two = categories(:two)
   end
 
   test "should get index" do
@@ -21,7 +24,7 @@ class ItemsControllerTest < ActionController::TestCase
   test "should create item" do
     login(:edward)
     assert_difference('Item.count') do
-      post :create, item: {title: "Pilau", price: @item.price, description: @item.description, category_ids: [categories(:one).id, categories(:two).id]}
+      post :create, item: {title: "Pilau", price: @item.price, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
     end
 
     assert_redirected_to item_path(assigns(:item))
@@ -40,14 +43,14 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should update item" do
     login(:edward)
-    patch :update, id: @item, item: {title: "Pizza", price: @item.price, description: @item.description, category_ids: [categories(:one).id, categories(:two).id]}
+    patch :update, id: @item, item: {title: "Pizza", price: @item.price, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
     assert_redirected_to item_path(assigns(:item))
   end
 
   test "should destroy item" do
     login(:edward)
     assert_difference('Item.count', -1) do
-      delete :destroy, id: @item
+      delete :destroy, id: @item_three
     end
 
     assert_redirected_to items_path
@@ -55,7 +58,7 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should retire item" do
     login(:edward)
-    get :retire, id: @item
+    put :retire, id: @item
     assert_redirected_to item_path(assigns(:item))
   end
 end

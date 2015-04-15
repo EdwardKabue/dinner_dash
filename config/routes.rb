@@ -5,14 +5,14 @@ DinnerDash::Application.routes.draw do
   resources :line_items
   resources :items do
     member do
-      get 'retire'
+      put 'retire'
     end
   end  
   resources :admin_dash_board, only: [:index, :show] do
     member do
-      get 'mark_as_completed'
-      get 'mark_as_paid'
-      get 'cancel'
+      put 'mark_as_completed'
+      put 'mark_as_paid'
+      put 'cancel'
     end
   end
   

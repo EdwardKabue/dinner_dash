@@ -2,12 +2,12 @@
 
 one:
   cart: one
-  item_id: 1
+  item: one
   quantity: 1
   order: one
 
 two:
   cart: two
-  item_id: 2
+  item: two
   quantity: 1
   order: two

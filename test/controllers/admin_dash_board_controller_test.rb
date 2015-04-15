@@ -22,20 +22,23 @@ class AdminDashBoardControllerTest < ActionController::TestCase
 
   test "should mark order as completed" do
   	login(:edward)
-  	get :mark_as_completed, id: @order
+  	put :mark_as_completed, id: @order
   	assert_redirected_to admin_dash_board_path(assigns(:order))
+    assert assigns(:order).completed
   end
 
   test "should cancel order" do
   	login(:edward)
-  	get :cancel, id: @order
+  	put :cancel, id: @order
   	assert_redirected_to admin_dash_board_path(assigns(:order))
+    assert assigns(:order).cancelled
   end
 
   test "should mark order as paid" do
   	login(:edward)
-  	get :mark_as_paid, id: @order
+  	put :mark_as_paid, id: @order
   	assert_redirected_to admin_dash_board_path(assigns(:order))
+    assert assigns(:order).paid
   end
 
 end
