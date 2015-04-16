@@ -28,6 +28,7 @@ class Item < ActiveRecord::Base
 	validates :title, format: {with: /\A[a-zA-Z]+\z/}
 	validates :description, format: {with: /\A[a-zA-Z]+\z/}
 	before_destroy :ensure_item_not_referenced_by_line_item
+	
 	private
 
 	def ensure_item_not_referenced_by_line_item
