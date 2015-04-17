@@ -24,7 +24,7 @@ class ItemsControllerTest < ActionController::TestCase
   test "should create item" do
     login(:edward)
     assert_difference('Item.count') do
-      post :create, item: {title: "Pilau", price: @item.price, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
+      post :create, item: {title: "Pilau", price: 1.2, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
     end
 
     assert_redirected_to item_path(assigns(:item))
