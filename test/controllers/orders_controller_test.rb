@@ -27,6 +27,7 @@ class OrdersControllerTest < ActionController::TestCase
 
 
     assert_redirected_to order_path(assigns(:order))
+    assert_equal true, assigns(:order).ordered
   end
 
   test "should show order" do
@@ -45,6 +46,7 @@ class OrdersControllerTest < ActionController::TestCase
     set_cart(:one)
     patch :update, id: @order, order: { ordered: "true", user_id: session[:user_id], pickup_or_delivery: "false", address_attributes: addresses(:two).attributes, line_items_attributes: [{id: line_items(:one).id, _destroy: 1}] }
     assert_redirected_to order_path(assigns(:order))
+    assert_equal false, assigns(:order).pickup_or_delivery
   end
 
   test "should destroy order" do

@@ -28,6 +28,7 @@ class ItemsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to item_path(assigns(:item))
+    assert_equal "Pilau", assigns(:item).title
   end
 
   test "should show item" do
@@ -45,6 +46,7 @@ class ItemsControllerTest < ActionController::TestCase
     login(:edward)
     patch :update, id: @item, item: {title: "Pizza", price: @item.price, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
     assert_redirected_to item_path(assigns(:item))
+    assert_equal "Pizza", assigns(:item).title
   end
 
   test "should destroy item" do
@@ -60,5 +62,6 @@ class ItemsControllerTest < ActionController::TestCase
     login(:edward)
     put :retire, id: @item
     assert_redirected_to item_path(assigns(:item))
+    assert_equal true, assigns(:item).retired
   end
 end

@@ -24,6 +24,7 @@ class CategoriesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to category_path(assigns(:category))
+    assert_equal "Fluids", assigns(:category).title
   end
 
   test "should show category" do
@@ -41,6 +42,7 @@ class CategoriesControllerTest < ActionController::TestCase
     login(:edward)
     patch :update, id: @category, category: { title: "Dessert" }
     assert_redirected_to category_path(assigns(:category))
+    assert_equal "Dessert", assigns(:category).title
   end
 
   test "should destroy category" do
