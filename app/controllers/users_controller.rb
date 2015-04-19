@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user
       flash[:success] = "Update was successful"
       redirect_to root_url
     else
