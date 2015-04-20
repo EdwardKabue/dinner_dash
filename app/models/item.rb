@@ -22,7 +22,7 @@ class Item < ActiveRecord::Base
 	has_many :carts, :through => :line_items
 	has_attached_file :photo, styles: {large: "600x600>", medium: "300x300>"}
 	validates_attachment :photo, content_type: {content_type: ["image/jpeg", "image/jpg", "image/png"]}
-	validates_presence_of :title, :price, :description, :categories
+	validates_presence_of :title, :price, :description, :category_ids
 	validates_uniqueness_of :title
 	validates_numericality_of :price, greater_than: 0
 	validates :title, format: {with: /\A[a-zA-Z]+\z/}

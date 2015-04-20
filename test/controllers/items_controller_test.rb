@@ -16,9 +16,9 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    login(:edward)
     get :new
-    assert_response :redirect
-    assert_redirected_to controller: 'home', action: 'index'
+    assert_response :success
   end
 
   test "should create item" do
@@ -26,7 +26,6 @@ class ItemsControllerTest < ActionController::TestCase
     assert_difference('Item.count') do
       post :create, item: {title: "Pilau", price: 1.2, description: @item.description, category_ids: [@category_one.id, @category_two.id]}
     end
-
     assert_redirected_to item_path(assigns(:item))
     assert_equal "Pilau", assigns(:item).title
   end
