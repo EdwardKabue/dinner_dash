@@ -16,8 +16,7 @@
 #
 
 class Item < ActiveRecord::Base
-	has_many :categorisations
-	has_many :categories, :through => :categorisations
+	has_and_belongs_to_many :categories, join_table: :item_categories
 	has_many :line_items
 	has_many :carts, :through => :line_items
 	has_attached_file :photo, styles: {large: "600x600>", medium: "300x300>"}

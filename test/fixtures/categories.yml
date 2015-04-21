@@ -2,6 +2,8 @@
 
 one:
   title: MyString
+  items: Chicken, Fish
 
 two:
   title: MyString1
+  items: Goatribs
