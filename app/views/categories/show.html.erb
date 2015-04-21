@@ -4,11 +4,11 @@
 		<th></th>
 	</thead>
 	<tbody>
-	<% @categorisations.each do |categorisation| %>
+	<% @items.each do |item| %>
 		<tr>
 			<td> <%= link_to "#{categorisation.item.title}", categorisation.item %> </td>
 			<% if is_user_admin? %>
-				<td><%= link_to 'Destroy', categorisation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			<% end %>
 		</tr>
 	<% end %>

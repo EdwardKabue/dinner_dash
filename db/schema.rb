@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421182017) do
+ActiveRecord::Schema.define(version: 20150421192612) do
 
   create_table "addresses", force: true do |t|
     t.integer  "street_number"
@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(version: 20150421182017) do
   add_index "items", ["title"], name: "index_items_on_title", unique: true
 
   create_table "line_items", force: true do |t|
-    t.integer  "cart_id"
     t.integer  "item_id"
-    t.integer  "quantity",   default: 1
+    t.integer  "quantity",           default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id"
+    t.integer  "line_itemable_id"
+    t.string   "line_itemable_type"
   end
 
   create_table "orders", force: true do |t|

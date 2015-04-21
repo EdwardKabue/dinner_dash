@@ -9,7 +9,7 @@
 
 class Cart < ActiveRecord::Base
 	belongs_to :order
-	has_many :line_items
+	has_many :line_items, as: :line_itemable
 	has_many :items, :through => :line_items
 
 	def add_item(item_id)

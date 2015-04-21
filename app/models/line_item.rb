@@ -12,8 +12,7 @@
 #
 
 class LineItem < ActiveRecord::Base
-	belongs_to :order
-	belongs_to :cart
+	belongs_to :line_itemable, polymorphic: true
     belongs_to :item
 
     def title

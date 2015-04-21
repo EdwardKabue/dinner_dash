@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  cart: one
+  line_itemable: one (Cart)
   item: one
   quantity: 1
-  order: one
+  line_itemable: one (Order)
 
 two:
-  cart: two
+  line_itemable: two (Cart)
   item: two
   quantity: 1
-  order: two
+  line_itemable: two (Order)
