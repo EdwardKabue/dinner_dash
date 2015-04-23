@@ -18,5 +18,15 @@ class SessionsController < ApplicationController
   	session[:user_id] = nil
   	redirect_to root_url, notice: 'You are now logged out!'
   end
- 
+  
+  def set_new_password
+  end 
+
+  def forgot_password
+    @user = User.find_by_email(params[:session][:email])
+    random_password = Array.new(10).map { (65 + rand(58)).chr }.join
+    @user.password = random_password
+    @user.save
+    UserMailer.new_password(@user, random_password)
+  end
 end

@@ -1,13 +1,17 @@
 DinnerDash::Application.routes.draw do
   
   resources :users, only: [:new, :create, :edit, :update]
+
   resources :sessions, only: [:new, :create]
+  
   resources :line_items
+
   resources :items do
     member do
       put 'retire'
     end
   end  
+
   resources :admin_dash_board, only: [:index, :show] do
     member do
       put 'mark_as_completed'
@@ -24,6 +28,9 @@ DinnerDash::Application.routes.draw do
   match '/register', to: "users#new", via: :get
   match 'login', to: "sessions#new", via: :get
   match 'logout', to: "sessions#destroy", via: :delete
+  match 'reset_password', to: "sessions#set_new_password", via: :get
+  match 'get_new_password', to: "sessions#forgot_password", via: :post
+
   #match 'retire', to: "items#retire", via: :post
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
