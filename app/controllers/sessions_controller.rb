@@ -27,6 +27,6 @@ class SessionsController < ApplicationController
     random_password = Array.new(10).map { (65 + rand(58)).chr }.join
     @user.password = random_password
     @user.save
-    UserMailer.new_password(@user, random_password)
+    UserMailer.new_password(@user, random_password).deliver
   end
 end

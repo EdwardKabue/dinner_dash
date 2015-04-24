@@ -31,6 +31,15 @@ DinnerDash::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    enable_sttls_auto: true,
+    authentication: "plain",
+    port: 587,
+    user_name: "Edward Andrew",
+    password: "Secret"
+  }
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 end
