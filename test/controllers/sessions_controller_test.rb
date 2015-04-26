@@ -22,4 +22,14 @@ class SessionsControllerTest < ActionController::TestCase
   	assert_redirected_to root_path
   end
 
+  test "should reset password" do
+    assert_difference 'ActionMailer::Base.deliveries.size' do
+      post :forgot_password, session: {email: @user.email}
+    end
+
+    reset_email = ActionMailer::Base.deliveries.last
+    assert_equal "Your new password", reset_email.subject
+    assert_equal "#{@user.email}", reset_email.to[0]
+    assert_match /Your new password is/, reset_email.body.to_s
+  end
 end

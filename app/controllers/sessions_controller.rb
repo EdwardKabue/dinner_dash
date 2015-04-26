@@ -28,5 +28,7 @@ class SessionsController < ApplicationController
     @user.password = random_password
     @user.save
     UserMailer.new_password(@user, random_password).deliver
+    flash[:success] = "Your new password has been sent."
+    redirect_to root_url
   end
 end
