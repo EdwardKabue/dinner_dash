@@ -21,6 +21,6 @@ class OrderTest < ActiveSupport::TestCase
   	order.user_id = users(:andy).id
 
   	assert_not order.save
-  	assert_not order.errors[:line_items].empty?
+  	assert_not order.errors[:line_item_ids].empty?
   end
 end

@@ -22,7 +22,6 @@ DinnerDash::Application.routes.draw do
   
   resources :orders
   
-  resources :categorisations, only: [:create, :destroy]
   resources :categories
 
   match '/register', to: "users#new", via: :get

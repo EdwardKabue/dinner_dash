@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :address
 	accepts_nested_attributes_for :line_items, allow_destroy: true
 
-	validates_presence_of :user_id, :line_items
+	validates_presence_of :user_id, :line_item_ids
 	
 	def total_price
 		total_order_price = 0
