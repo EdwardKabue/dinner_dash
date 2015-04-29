@@ -3,6 +3,7 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
   setup do
     @order = orders(:one)
+    @cart = carts(:one)
   end
 
   test "should get index" do
@@ -22,7 +23,7 @@ class OrdersControllerTest < ActionController::TestCase
     login(:andy)
     set_cart(:one)
     #assert_difference('Order.count') do
-    post :create, order: { user_id: users(:andy).id, ordered: true, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
+    post :create, order: { user_id: users(:andy).id, line_item_ids: [line_items(:one).id, line_items(:two).id], ordered: true, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
     #end
 
     assert assigns(:order).errors[:line_item_ids].empty?

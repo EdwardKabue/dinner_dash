@@ -16,7 +16,9 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
   <% end %>  
- 
+  <div>
+    <%= f.hidden_field :line_item_ids, value: @cart.line_item_ids %>
+  </div>
   <div>
     <%= f.hidden_field :ordered, value: true %>
   </div>

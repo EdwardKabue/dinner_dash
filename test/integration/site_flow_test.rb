@@ -18,5 +18,14 @@ class SiteFlowTest < ActionDispatch::IntegrationTest
   	assert_response :success
   	assert assigns(:items)
   end
- 
+
+  test "user sign in and place order" do
+    login_as(users(:andy), "mystring1")
+    assert_redirected_to root_url
+    get "/items"
+    get "/items/?id=#{items(:one).id}"
+    assert_response :success
+    post line_items_path, line_item: {item_id: items(:one).id}
+    assert assigns(:line_item).save
+  end
 end

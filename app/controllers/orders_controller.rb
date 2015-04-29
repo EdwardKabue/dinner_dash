@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :set_cart , only: [:index,:new, :create, :update]
+  before_action :set_cart , only: [:index,:new, :edit, :create, :update]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   
   # GET /orders
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.line_item_ids = @cart.line_item_ids
+    #@order.line_item_ids = @cart.line_item_ids
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -78,6 +78,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :ordered, :pickup_or_delivery, address_attributes: [:city, :state, :zip, :street_number], line_items_attributes: [:_destroy])
+      params.require(:order).permit(:user_id, :ordered, :pickup_or_delivery, line_item_ids: [], address_attributes: [:city, :state, :zip, :street_number], line_items_attributes: [:_destroy])
     end
 end
