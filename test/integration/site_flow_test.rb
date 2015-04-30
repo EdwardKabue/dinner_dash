@@ -25,7 +25,8 @@ class SiteFlowTest < ActionDispatch::IntegrationTest
     get "/items"
     get "/items/?id=#{items(:one).id}"
     assert_response :success
-    post line_items_path, line_item: {item_id: items(:one).id}
+    post line_items_path, item_id: items(:one).id
     assert assigns(:line_item).save
+    
   end
 end
