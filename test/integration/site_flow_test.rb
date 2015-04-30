@@ -27,6 +27,7 @@ class SiteFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     post line_items_path, item_id: items(:one).id
     assert assigns(:line_item).save
-    
+    post orders_path, order: { user_id: users(:andy).id, line_item_ids: [assigns(:line_item).id], ordered: true, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
+    assert assigns(:order)
   end
 end
