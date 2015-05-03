@@ -30,4 +30,16 @@ class SiteFlowTest < ActionDispatch::IntegrationTest
     post orders_path, order: { user_id: users(:andy).id, line_item_ids: [assigns(:line_item).id], ordered: true, pickup_or_delivery: true, address_attributes: { city: "New York", state: "New York", zip: "123", street_number: 12 } }
     assert assigns(:order)
   end
+
+  test "administrator sign up, item creation and retirement" do
+    login_as(users(:edward), "mystring")
+    assert_redirected_to root_url
+    get "/items"
+    get "/items/new"
+    assert_response :success
+    post items_path, item: {title: "Pilau", price: 1.2, description: "Spicy", category_ids: [categories(:one).id, categories(:two).id]}
+    assert assigns(:item).save
+    post retire_item_path, item_id: assigns(:item).id
+    assert_equal true, assigns(:item).retired
+  end
 end

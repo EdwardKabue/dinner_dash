@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   include CurrentCart
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :retire]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_admin, only: [:new, :edit, :update, :create, :retire, :destroy]
   # GET /items
   # GET /items.json
@@ -67,6 +67,7 @@ class ItemsController < ApplicationController
 
   #Custom action for retiring an item
   def retire
+    @item = Item.find(params[:item_id])
     @item.update(:retired => true)
     flash[:notice] = "This item has been retired."
     redirect_to @item

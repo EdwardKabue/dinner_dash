@@ -6,11 +6,7 @@ DinnerDash::Application.routes.draw do
   
   resources :line_items
 
-  resources :items do
-    member do
-      put 'retire'
-    end
-  end  
+  resources :items 
 
   resources :admin_dash_board, only: [:index, :show] do
     member do
@@ -29,6 +25,7 @@ DinnerDash::Application.routes.draw do
   match 'logout', to: "sessions#destroy", via: :delete
   match 'reset_password', to: "sessions#set_new_password", via: :get
   match 'get_new_password', to: "sessions#forgot_password", via: :post
+  match 'retire_item', to: "items#retire", via: :post
 
   #match 'retire', to: "items#retire", via: :post
   root to: "home#index"

@@ -59,7 +59,7 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should retire item" do
     login(:edward)
-    put :retire, id: @item
+    post :retire, item_id: @item
     assert_redirected_to item_path(assigns(:item))
     assert_equal true, assigns(:item).retired
   end

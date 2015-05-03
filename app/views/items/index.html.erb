@@ -29,7 +29,7 @@
           
             <td>
               <% if is_user_admin? && @category && !item.retired %>
-                <%= button_to 'Add this item to the #{@category.title} category', categorisations_path(item_id: item.id, category_id: @category.id ) %>
+               
               <% end %>   
             </td>
       </tr>

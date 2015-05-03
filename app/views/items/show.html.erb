@@ -21,7 +21,7 @@
 			</td>
 			<td>
 				<% if is_user_admin? && !@item.retired %>
-					<%= link_to "Retire this item.", retire_item_path(@item), method: :put, data: {confirm: "Are you sure?"} %> 
+					<%= button_to "Retire this item.", {controller: 'items', action: 'retire'}, params: {item_id: @item.id} %> 
 				<% end %>
 			</td>	
 		</tr>
