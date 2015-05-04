@@ -11,12 +11,13 @@
 			<% @ordered_orders.each do |ordered_order| %>
 				<tr>
 					<td>
-						<%= link_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", admin_dash_board_path(ordered_order) %>
+						<%= button_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", {controller: 'admin_dash_board', action: 'mark_as_completed'}, params: {order_id: ordered_order.id}%>
 					</td>
 					<td>
-						<%= link_to "Cancel this order.", cancel_admin_dash_board_path(ordered_order), method: :put %> 
+						<%= button_to "Cancel this order.", {controller: 'admin_dash_board', action: 'cancel'}, params: {order_id: ordered_order.id}%> 
 						<i>or</i> 
-						<%= link_to "Mark it as paid.", mark_as_paid_admin_dash_board_path(ordered_order), method: :put %>
+						<%= button_to "Mark it as paid.", {controller: 'admin_dash_board', action: 'mark_as_paid'}, params: {order_id: ordered_order.id}%>
+						
 					</td>
 				</tr>
 			<% end %>	

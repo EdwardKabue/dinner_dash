@@ -1,13 +1,10 @@
 class ItemsController < ApplicationController
   include CurrentCart
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :remove_from_category]
   before_action :redirect_if_not_admin, only: [:new, :edit, :update, :create, :retire, :destroy]
   # GET /items
   # GET /items.json
   def index
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-    end
     @items = Item.all
   end
 
@@ -70,6 +67,18 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:item_id])
     @item.update(:retired => true)
     flash[:notice] = "This item has been retired."
+    redirect_to @item
+  end
+
+  def remove_from_category
+    categories = []
+    removed_category_ids = params[:item][:category_ids]
+
+    removed_category_ids.each do |id|
+      categories << Category.find(id)
+    end
+
+    @item.categories.delete(categories)
     redirect_to @item
   end
 

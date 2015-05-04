@@ -6,7 +6,11 @@ DinnerDash::Application.routes.draw do
   
   resources :line_items
 
-  resources :items 
+  resources :items do
+    member do
+      patch 'remove_from_category'
+    end
+  end
 
   resources :admin_dash_board, only: [:index, :show] do
     member do
@@ -26,6 +30,9 @@ DinnerDash::Application.routes.draw do
   match 'reset_password', to: "sessions#set_new_password", via: :get
   match 'get_new_password', to: "sessions#forgot_password", via: :post
   match 'retire_item', to: "items#retire", via: :post
+  match 'mark_order_as_completed', to: "admin_dash_board#mark_as_completed", via: :post
+  match 'mark_order_as_paid', to: "admin_dash_board#mark_as_paid", via: :post
+  match 'cancel_order', to: "admin_dash_board#cancel", via: :post
 
   #match 'retire', to: "items#retire", via: :post
   root to: "home#index"

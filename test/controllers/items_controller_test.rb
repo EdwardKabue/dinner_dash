@@ -63,4 +63,11 @@ class ItemsControllerTest < ActionController::TestCase
     assert_redirected_to item_path(assigns(:item))
     assert_equal true, assigns(:item).retired
   end
+
+  test "remove item from category" do
+    login(:edward)
+    patch :remove_from_category, id: @item, item: {category_ids: [@category_one.id]}
+    
+    assert_redirected_to item_path(assigns(:item))
+  end
 end

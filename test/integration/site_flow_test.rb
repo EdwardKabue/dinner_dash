@@ -42,4 +42,5 @@ class SiteFlowTest < ActionDispatch::IntegrationTest
     post retire_item_path, item_id: assigns(:item).id
     assert_equal true, assigns(:item).retired
   end
+  
 end

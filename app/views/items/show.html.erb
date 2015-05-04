@@ -27,6 +27,14 @@
 		</tr>
 	</tbody>
 </table>
+
+<% if is_user_admin? %>
+	<%= form_for :item, url: remove_from_category_item_path do |f| %>
+	<p><%= f.label :category_ids, "Categories" %><br/></p>
+  	<%= f.collection_select :category_ids, Category.all, :id, :title, {}, {multiple: true} %>
+	<% end %>
+<% end %>
+
 <% if is_user_admin? && !@item.retired %>
 	<%= link_to 'Edit', edit_item_path(@item) %> |
 <% end %>	
