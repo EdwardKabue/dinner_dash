@@ -6,11 +6,7 @@ DinnerDash::Application.routes.draw do
   
   resources :line_items
 
-  resources :items do
-    member do
-      patch 'remove_from_category'
-    end
-  end
+  resources :items 
 
   resources :admin_dash_board, only: [:index, :show] do
     member do
@@ -22,7 +18,11 @@ DinnerDash::Application.routes.draw do
   
   resources :orders
   
-  resources :categories
+  resources :categories do
+    member do
+      patch 'remove_from_category'
+    end
+  end
 
   match '/register', to: "users#new", via: :get
   match 'login', to: "sessions#new", via: :get

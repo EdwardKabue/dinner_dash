@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :remove_from_category]
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update, :destroy]
   # GET /categories
   # GET /categories.json
@@ -60,6 +60,18 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_url }
       format.json { head :no_content }
     end
+  end
+
+  def remove_from_category
+    items = []
+    removed_item_ids = params[:category][:item_ids]
+
+    removed_item_ids.each do |id|
+      items << Item.find(id)
+    end
+
+    @category.items.delete(items)
+    redirect_to @category
   end
 
   private

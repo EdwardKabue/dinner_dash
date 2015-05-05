@@ -15,5 +15,11 @@
 	</tbody>
 </table>
 
+<% if is_user_admin? %>
+	<%= form_for :category, url: remove_from_category_item_path do |f| %>
+	<p><%= f.label :item_ids, "Items" %><br/></p>
+  	<%= f.collection_select :item_ids, Item.all, :id, :title, {}, {multiple: true} %>
+	<% end %>
+<% end %>s
 	
 <%= link_to 'Back', categories_path %>

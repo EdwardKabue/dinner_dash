@@ -70,18 +70,6 @@ class ItemsController < ApplicationController
     redirect_to @item
   end
 
-  def remove_from_category
-    categories = []
-    removed_category_ids = params[:item][:category_ids]
-
-    removed_category_ids.each do |id|
-      categories << Category.find(id)
-    end
-
-    @item.categories.delete(categories)
-    redirect_to @item
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item

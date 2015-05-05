@@ -53,4 +53,14 @@ class CategoriesControllerTest < ActionController::TestCase
 
     assert_redirected_to categories_path
   end
+
+  test "remove item from category" do
+    cat_item_size = @category.items.size
+    login(:edward)
+    patch :remove_from_category, id: @category, category: {item_ids: [items(:one).id]}
+    cat_item_size_2 = assigns(:category).items.size
+
+    assert_equal cat_item_size-1, cat_item_size_2
+    assert_redirected_to category_path(assigns(:category))
+  end
 end
