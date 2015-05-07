@@ -22,7 +22,7 @@ DinnerDash::Application.configure do
     authentication: "plain",
     port: 587,
     user_name: "Edward Andrew",
-    password: "Secret"
+    password: "fitguru1"
   }
 
   # Print deprecation notices to the Rails logger.

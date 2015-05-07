@@ -10,7 +10,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create new user" do
-  	post :create, user: { full_name: "Edward Andrew", display_name: "Edu", email: "edward@yahoo.com", password: "eduardo", password_confirmation: "eduardo" }
+  	post :create, user: { full_name: "Edward Andrew", email: "edward@yahoo.com", password: "eduardo", password_confirmation: "eduardo" }
   	#assert_response :redirect
   	assert_redirected_to root_url
   	#assert_nil assigns(:user)

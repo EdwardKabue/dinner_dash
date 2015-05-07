@@ -23,6 +23,6 @@ class User < ActiveRecord::Base
 						  format: { with: /\A[A-Z]{1}[a-z]+(?:\s[A-Z]{1}[a-z]+){1}\z/, message: 'Use the format "Firstname Lastname".'},
 						  uniqueness: true,
 						  :on => :create
-	validates :display_name, length: {in: 2..32}, uniqueness: true		 
+	validates :display_name, length: {in: 2..32}, allow_blank: true, uniqueness: true		 
 	
 end

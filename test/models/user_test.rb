@@ -34,8 +34,8 @@ class UserTest < ActiveSupport::TestCase
     user.password = "becks"
     user.password_confirmation = "becks"
 
-    assert_not user.save
-    assert_not user.errors[:display_name].empty?
+    assert user.save
+    assert user.errors[:display_name].empty?
   end
 
 
