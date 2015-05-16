@@ -11,7 +11,7 @@ user_properties = [["Rachel Warbelow","demo+rachel@jumpstartlab.com", "", "passw
 ["Jorge Tellez", "demo+jorge@jumpstartlab.com", "novohispano", "password", false]]
 
 user_properties.each do |property|
-	User.create(full_name:property[0] , email:property[1] , display_name:property[2] , password:property[3], admin:property[4] )
+	User.create(full_name:property[0] , email:property[1] , display_name:property[2] , password:property[3], password_confirmation: property[3], admin:property[4])
 end
 
 
