@@ -24,8 +24,8 @@ class Item < ActiveRecord::Base
 	validates_presence_of :title, :price, :description, :category_ids
 	validates_uniqueness_of :title
 	validates_numericality_of :price, greater_than: 0
-	validates :title, format: {with: /\A[a-zA-Z]+\z/}
-	validates :description, format: {with: /\A[a-zA-Z]+\z/}
+	validates :title, format: {with: /\A[a-zA-Z\.\s]+\z/}
+	validates :description, format: {with: /\A[a-zA-Z\.\s]+\z/}
 	before_destroy :ensure_item_not_referenced_by_line_item
 	
 	private
