@@ -15,11 +15,11 @@ user_properties.each do |property|
 end
 
 	
-category_1 = Category.find_or_create_by(title: "Salads")
-category_2 = Category.find_or_create_by(title: "Beverages")
-category_3 = Category.find_or_create_by(title: "Desserts")
-category_4 = Category.find_or_create_by(title: "Sandwiches")
-category_5 = Category.find_or_create_by(title: "Starters")
+ Category.find_or_create_by(title: "Salads")
+ Category.find_or_create_by(title: "Beverages")
+ Category.find_or_create_by(title: "Desserts")
+ Category.find_or_create_by(title: "Sandwiches")
+ Category.find_or_create_by(title: "Starters")
 
 #Salads
 item_properties_1 = [["House Salad", "Romaine, iceberg, red cabbage, carrots, cucumbers, and cherry tomatoes.", 4.50],
@@ -28,8 +28,8 @@ item_properties_1 = [["House Salad", "Romaine, iceberg, red cabbage, carrots, cu
 ["Greek Salad", "Mixed spring greens topped with kalamata olives, cucumber, pickled red onions with Greek dressing.", 7.95]]
 
 item_properties_1.each do |property|
-	item = Item.new(title: property[0], description: property[1] , price: property[2])
-	item.category_ids << category_1.id
+	item = Item.new(title: property[0], description: property[1] , price: property[2], category_ids: [Category.find_by(title: "Salads").id])
+	#item.category_ids << Category.find_by(title: "Salads").id
 	item.save
 end
 
@@ -38,8 +38,8 @@ item_properties_2 = [["Coffee", "Regular or Decaf.", 1.25],
 ["Smoothie", "Strawberry, mixed berry.", 5.50]]
 
 item_properties_2.each do |property|
-	item = Item.new(title: property[0], description: property[1] , price: property[2])
-	item.category_ids << category_2.id
+	item = Item.new(title: property[0], description: property[1] , price: property[2], category_ids: [Category.find_by(title: "Beverages").id])
+	#item.category_ids << Category.find_by(title: "Beverages").id
 	item.save
 end
 
@@ -49,8 +49,8 @@ item_properties_3 = [["Belgian waffle", "Served with vanilla ice cream, fresh st
 ["Cookies and cream", "Vanilla ice cream, oreo crumbs, chocolate sauce, whipped cream and cherry.", 7]]
 
 item_properties_3.each do |property|
-	item = Item.new(title: property[0], description: property[1] , price: property[2])
-	item.category_ids << category_3.id
+	item = Item.new(title: property[0], description: property[1] , price: property[2], category_ids: [Category.find_by(title: "Desserts").id])
+	#item.category_ids << Category.find_by(title: "Desserts").id
 	item.save
 end
 
@@ -60,8 +60,8 @@ item_properties_4 = [["Pulled pork", "Served with tangy barbecue sauce on an oni
 ["Reuben", "Corned beef, melted swiss, sauerkraut, and thousand island on marbled rye.", 7.95]]
 
 item_properties_4.each do |property|
-	item = Item.new(title: property[0], description: property[1] , price: property[2])
-	item.category_ids << category_4.id
+	item = Item.new(title: property[0], description: property[1] , price: property[2], category_ids: [Category.find_by(title: "Sandwiches").id])
+	#item.category_ids << Category.find_by(title: "Sandwiches").id
 	item.save
 end
 
@@ -72,7 +72,7 @@ item_properties_5 = [["Honey Glazed Onion Rings", "Sweet vidalia onions, deep fr
 ["Grilled Artichoke", "Served with sliced baguette and garlic aioli.", 7.75]]
 
 item_properties_5.each do |property|
-	item = Item.new(title: property[0], description: property[1] , price: property[2])
-	item.category_ids << category_5.id
+	item = Item.new(title: property[0], description: property[1] , price: property[2], category_ids: [Category.find_by(title: "Starters").id])
+	#item.category_ids << Category.find_by(title: "Starters").id
 	item.save
 end
