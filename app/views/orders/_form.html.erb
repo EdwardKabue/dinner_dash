@@ -59,7 +59,7 @@
     <% end %>
   </div>
 
-  <% if !@order_items.nil? && (@order.paid || !@order.paid) %>
+  <% if !@order.new_record? && (@order.paid || !@order.paid) %>
     <div id="line_item_fields">
       <%= f.fields_for :line_items do |line_item_field| %>
         <div>
@@ -75,3 +75,7 @@
     <%= f.submit %>
   </div>
 <% end %>
+ 
+<script type="text/javascript">
+  
+</script>

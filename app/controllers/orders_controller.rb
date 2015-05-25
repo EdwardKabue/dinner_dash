@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
     @order = Order.new
     #@address = Address.new
     @order.build_address
-    @order_items = nil
   end
 
   # GET /orders/1/edit
