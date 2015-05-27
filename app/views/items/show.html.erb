@@ -19,7 +19,7 @@
 		<tr>
 			<td>
 				<% if !@item.retired %>
-					<%= button_to "Add to cart", {controller: 'line_items', action: 'create'}, params: {item_id: @item.id} %>
+					<%= button_to "Add to cart", {controller: 'line_items', action: 'create'}, params: {itemz_id: @item.id} %>
 				<% end %>
 			</td>
 			<td>

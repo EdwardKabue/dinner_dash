@@ -25,13 +25,7 @@
             <% if is_user_admin? && !item.retired %>
               <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>  
-          </td>
-          
-            <td>
-              <% if is_user_admin? && @category && !item.retired %>
-               
-              <% end %>   
-            </td>
+          </td>    
       </tr>
     <% end %>
   </tbody>

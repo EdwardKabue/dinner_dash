@@ -25,7 +25,7 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    new_line_item = Item.find(params[:item_id])
+    new_line_item = Item.find(params[:itemz_id])
     if new_line_item.retired
       redirect_to new_line_item
     else 
