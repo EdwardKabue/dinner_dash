@@ -20,6 +20,6 @@
 	<p><%= f.label :item_ids, "Items" %><br/></p>
   	<%= f.collection_select :item_ids, Item.all, :id, :title, {}, {multiple: true} %>
 	<% end %>
-<% end %>s
+<% end %>
 	
 <%= link_to 'Back', categories_path %>
