@@ -64,7 +64,7 @@
       <%= f.fields_for :line_items do |line_item_field| %>
         <div>
           <%= line_item_field.label :_destroy, :title%> 
-          <%= line_item_field.checkbox :_destroy%>
+          <%= line_item_field.check_box :_destroy%>
         </div>
       <% end %>  
     </div>
