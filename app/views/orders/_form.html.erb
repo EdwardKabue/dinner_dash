@@ -77,9 +77,12 @@
 <% end %>
  
 <script type="text/javascript">
-$(document).ready(function({
-  $("#order_pickup_or_delivery_false").select(function(){
-    $("#address_fields").hide();
-  });
-}));
+$(document).ready(function(){
+    $("#order_pickup_or_delivery_true").click(function(){
+      $("#address_fields").hide();
+    });
+    $("#order_pickup_or_delivery_false").click(function(){
+      $("#address_fields").show();
+    });       
+});
 </script>
