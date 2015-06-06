@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :set_cart , only: [:index,:new, :edit, :create, :update]
+  before_action :set_cart, only: [:index,:new, :edit, :create, :update]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   
   # GET /orders
