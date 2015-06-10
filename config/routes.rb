@@ -1,6 +1,6 @@
 DinnerDash::Application.routes.draw do
   
-  get "carts/destroy"
+  
   resources :users, only: [:new, :create, :edit, :update]
 
   resources :sessions, only: [:new, :create]
