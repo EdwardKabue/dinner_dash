@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   def destroy
   	@cart.destroy if @cart.id == session[:cart_id]
   	session[:cart_id] = nil
-  	flash[:notice] = "Your cart is currently empty"
+  	flash[:success] = "Your cart is currently empty"
   	redirect_to root_url
   end
 
