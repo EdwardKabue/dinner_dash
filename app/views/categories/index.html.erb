@@ -12,10 +12,10 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= link_to category.title, category %></td>
+        <td class = "non-admin"><%= link_to category.title, category %></td>
         <% if is_user_admin? %>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class = "admin"><%= link_to 'Edit', edit_category_path(category) %></td>
+          <td class = "admin"><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

@@ -12,13 +12,13 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td>
+        <td class= "non-admin"><%= link_to 'Show', order %></td>
+        <td class = "admin">
           <% if is_user_admin? %>
             <%= link_to 'Edit', edit_order_path(order) %>
           <% end %>
         </td>
-        <td>
+        <td class = "admin">
           <% if is_user_admin? %>
             <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
