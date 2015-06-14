@@ -36,14 +36,3 @@
  <%= link_to 'New Item', new_item_path %>
 <% end %>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    <% if is_user_admin? %>
-      var admin_cells = $(".admin");
-      for (var i = 0; i < admin_cells.length; i++) {
-        admin_cells[i].style.border = "1px solid black";
-        admin_cells[i].style.borderRadius = "3px";
-      }  
-    <% end %>  
-  });
-</script>
