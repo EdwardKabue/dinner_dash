@@ -41,3 +41,9 @@ table, .non-admin{
 	border: 1px solid black;
 	border-radius: 3px;
 }
+
+button.close{
+	background-color: white;
+	border-style: none;
+}
+
