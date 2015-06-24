@@ -11,11 +11,11 @@
     </div>
   <% end %> 
 
-  <% if !current_user.admin %>
+  
     <div>
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
-  <% end %>  
+    
   <div>
     <%= f.hidden_field :line_item_ids, value: @cart.line_item_ids %>
   </div>
