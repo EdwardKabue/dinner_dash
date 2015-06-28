@@ -34,7 +34,7 @@ body{
 
 *{
 	font-family: fantasy;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 
 table, .non-admin{
@@ -46,10 +46,15 @@ button.close{
 	background-color: white;
 	border-style: none;
 }
+
 .success{
 	background-color: #66FF99;
 	border-radius: 5px;
 	border-style: ridge;
 	border-color: #33CC33;
 	margin-top: 5px;
+}
+
+#address_fields{
+	display: none;
 }
