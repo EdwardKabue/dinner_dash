@@ -17,7 +17,7 @@
     </div>
     
   <div>
-    <%= f.hidden_field :line_item_ids, value: @cart.line_item_ids %>
+    <%= f.hidden_field "line_item_ids[]", value: @cart.line_item_ids %>
   </div>
   <div>
     <%= f.hidden_field :ordered, value: true %>
@@ -59,7 +59,7 @@
     <% end %>
   </div>
 
-  <% if !@order.new_record? && (@order.paid || !@order.paid) %>
+  <% if is_user_admin? && !@order.new_record? %>
     <div id="line_item_fields">
       <%= f.fields_for :line_items do |line_item_field| %>
         <div>
