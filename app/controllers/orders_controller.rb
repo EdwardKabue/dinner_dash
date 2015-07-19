@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.line_item_ids = @cart.line_item_ids
+    #@order.line_item_ids = @cart.line_item_ids
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }

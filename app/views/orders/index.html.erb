@@ -1,32 +1,34 @@
-<h1>Listing orders</h1>
+<% if !@orders.empty? %>
+  <h1>Listing orders</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+  <table>
+    <thead>
       <tr>
-        <td class= "non-admin"><%= link_to 'Show', order %></td>
-        <td class = "admin">
-          <% if is_user_admin? %>
-            <%= link_to 'Edit', edit_order_path(order) %>
-          <% end %>
-        </td>
-        <td class = "admin">
-          <% if is_user_admin? %>
-            <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td class= "non-admin"><%= link_to 'Show', order %></td>
+          <td class = "admin">
+            <% if is_user_admin? %>
+              <%= link_to 'Edit', edit_order_path(order) %>
+            <% end %>
+          </td>
+          <td class = "admin">
+            <% if is_user_admin? %>
+              <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <br>
 <% if logged_in? && !@cart.line_items.empty? %>

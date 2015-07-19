@@ -1,92 +1,104 @@
-<div>
-	<h2>Ordered</h2>
-	<table id = "ordered">
-		<thead>
-			<tr>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @ordered_orders.each do |ordered_order| %>
-				<tr>
-					<td>
-						<%= button_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", {controller: 'admin_dash_board', action: 'mark_as_completed'}, params: {order_id: ordered_order.id}%>
-					</td>
-					<td>
-						<%= button_to "Cancel this order.", {controller: 'admin_dash_board', action: 'cancel'}, params: {order_id: ordered_order.id}%> 
-						<i>or</i> 
-						<%= button_to "Mark it as paid.", {controller: 'admin_dash_board', action: 'mark_as_paid'}, params: {order_id: ordered_order.id}%>
-						
-					</td>
-				</tr>
-			<% end %>	
-		</tbody>
-	</table>	
-</div>
+<% if @orders %>
 
-<div>
-	<h2>Paid</h2>
-	<table id = "paid">
-		<thead>
-			<tr>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @paid_orders.each do |paid_order| %>
-				<tr>
-					<td>
-						<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(paid_order) %>
-					</td>
-					<td>
-						<%= link_to "Mark this order as completed.", mark_as_completed_admin_dash_board_path(paid_order), method: :put %>
-					 	<i>or</i> 
-					 	<%= link_to "Cancel it.", cancel_admin_dash_board_path(paid_order), method: :put %>
-					</td>
-				</tr>
-			<% end %>	
-		</tbody>
-	</table>	
-</div>
+	<% if !@ordered_orders.empty? %>
+		<div>
+			<h2>Ordered</h2>
+			<table id = "ordered">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @ordered_orders.each do |ordered_order| %>
+						<tr>
+							<td>
+								<%= button_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", {controller: 'admin_dash_board', action: 'mark_as_completed'}, params: {order_id: ordered_order.id}%>
+							</td>
+							<td>
+								<%= button_to "Cancel this order.", {controller: 'admin_dash_board', action: 'cancel'}, params: {order_id: ordered_order.id}%> 
+								<i>or</i> 
+								<%= button_to "Mark it as paid.", {controller: 'admin_dash_board', action: 'mark_as_paid'}, params: {order_id: ordered_order.id}%>
+								
+							</td>
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>	
+		</div>
+	<% end %>
 
-<div>
-	<h2>Completed</h2>
-	<table id = "completed">
-		<thead>
-			<tr>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @completed_orders.each do |completed_order| %>
-				<tr>
-					<td>
-						<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(completed_order) %>
-					</td>
-				</tr>
-			<% end %>	
-		</tbody>
-	</table>	
-</div>
+	<% if !@paid_orders.empty? %>
+		<div>
+			<h2>Paid</h2>
+			<table id = "paid">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @paid_orders.each do |paid_order| %>
+						<tr>
+							<td>
+								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(paid_order) %>
+							</td>
+							<td>
+								<%= link_to "Mark this order as completed.", mark_as_completed_admin_dash_board_path(paid_order), method: :put %>
+							 	<i>or</i> 
+							 	<%= link_to "Cancel it.", cancel_admin_dash_board_path(paid_order), method: :put %>
+							</td>
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>	
+		</div>
+	<% end %>
 
-<div>
-	<h2>Cancelled</h2>
-	<table id = "cancelled">
-		<thead>
-			<tr>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @cancelled_orders.each do |cancelled_order| %>
-				<tr>
-					<td>
-						<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(cancelled_order) %>
-					</td>
-				</tr>
-			<% end %>	
-		</tbody>
-	</table>	
-</div>
+	<% if !@completed_orders.empty? %>
+		<div>
+			<h2>Completed</h2>
+			<table id = "completed">
+				<thead>
+					<tr>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @completed_orders.each do |completed_order| %>
+						<tr>
+							<td>
+								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(completed_order) %>
+							</td>
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>	
+		</div>
+	<% end %>
+
+	<% if !@cancelled_orders.empty? %>
+		<div>
+			<h2>Cancelled</h2>
+			<table id = "cancelled">
+				<thead>
+					<tr>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @cancelled_orders.each do |cancelled_order| %>
+						<tr>
+							<td>
+								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(cancelled_order) %>
+							</td>
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>	
+		</div>
+	<% end %>	
+
+<% end %>

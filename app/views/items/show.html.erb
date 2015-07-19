@@ -1,8 +1,8 @@
 <% if flash[:notice] %>
-	<div class="notice"><%= flash[:notice] %></div>
+	<p class="notice"><button type="button" class="close">x</button><%= flash[:notice] %></p>
 <% end %>
 
-<p class="notice"><%= notice %></p>
+<p class="notice"><button type="button" class="close">x</button><%= notice %></p>
 
 <table>
 	<th></th>
