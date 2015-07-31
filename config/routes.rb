@@ -33,9 +33,9 @@ DinnerDash::Application.routes.draw do
   match 'reset_password', to: "sessions#set_new_password", via: :get
   match 'get_new_password', to: "sessions#forgot_password", via: :post
   match 'retire_item', to: "items#retire", via: :post
-  match 'mark_order_as_completed', to: "admin_dash_board#mark_as_completed", via: :post
-  match 'mark_order_as_paid', to: "admin_dash_board#mark_as_paid", via: :post
-  match 'cancel_order', to: "admin_dash_board#cancel", via: :post
+  match 'mark_order_as_completed', to: "admin_dash_board#mark_as_completed", via: :put
+  match 'mark_order_as_paid', to: "admin_dash_board#mark_as_paid", via: :put
+  match 'cancel_order', to: "admin_dash_board#cancel", via: :put
 
   #match 'retire', to: "items#retire", via: :post
   root to: "home#index"

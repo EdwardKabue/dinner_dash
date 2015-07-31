@@ -1,7 +1,7 @@
 <% if @orders %>
 
 	<% if !@ordered_orders.empty? %>
-		<div>
+		
 			<h2>Ordered</h2>
 			<table id = "ordered">
 				<thead>
@@ -14,23 +14,23 @@
 					<% @ordered_orders.each do |ordered_order| %>
 						<tr>
 							<td>
-								<%= button_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", {controller: 'admin_dash_board', action: 'mark_as_completed'}, params: {order_id: ordered_order.id}%>
+								<%= link_to "Made #{time_ago_in_words(ordered_order.created_at)} ago.", mark_order_as_completed_path(ordered_order)%>
 							</td>
 							<td>
-								<%= button_to "Cancel this order.", {controller: 'admin_dash_board', action: 'cancel'}, params: {order_id: ordered_order.id}%> 
+								<%= link_to "Cancel it.", cancel_order_path(ordered_order) %>
 								<i>or</i> 
-								<%= button_to "Mark it as paid.", {controller: 'admin_dash_board', action: 'mark_as_paid'}, params: {order_id: ordered_order.id}%>
+								<%= link_to "Mark it as paid.", mark_order_as_paid_path(ordered_order) %>
 								
 							</td>
 						</tr>
 					<% end %>	
 				</tbody>
 			</table>	
-		</div>
+		
 	<% end %>
 
 	<% if !@paid_orders.empty? %>
-		<div>
+		
 			<h2>Paid</h2>
 			<table id = "paid">
 				<thead>
@@ -54,11 +54,11 @@
 					<% end %>	
 				</tbody>
 			</table>	
-		</div>
+		
 	<% end %>
 
 	<% if !@completed_orders.empty? %>
-		<div>
+		
 			<h2>Completed</h2>
 			<table id = "completed">
 				<thead>
@@ -70,17 +70,17 @@
 					<% @completed_orders.each do |completed_order| %>
 						<tr>
 							<td>
-								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(completed_order) %>
+								<%= link_to "Made #{time_ago_in_words(completed_order.created_at)} ago.", admin_dash_board_path(completed_order) %>
 							</td>
 						</tr>
 					<% end %>	
 				</tbody>
 			</table>	
-		</div>
+		
 	<% end %>
 
 	<% if !@cancelled_orders.empty? %>
-		<div>
+		
 			<h2>Cancelled</h2>
 			<table id = "cancelled">
 				<thead>
@@ -92,13 +92,13 @@
 					<% @cancelled_orders.each do |cancelled_order| %>
 						<tr>
 							<td>
-								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(cancelled_order) %>
+								<%= link_to "Made #{time_ago_in_words(cancelled_order.created_at)} ago.", admin_dash_board_path(cancelled_order) %>
 							</td>
 						</tr>
 					<% end %>	
 				</tbody>
 			</table>	
-		</div>
+		
 	<% end %>	
 
 <% end %>
