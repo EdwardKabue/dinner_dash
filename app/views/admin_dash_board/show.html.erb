@@ -28,7 +28,7 @@
 		<tr>
 			<td>Order status:</td>
 			<td>
-				<% if @order.ordered %>
+				<% if @order.ordered && !@order.paid && !@order.completed %>
 					<p>Ordered on: <%= @order.created_at%></p>
 				<% elsif @order.paid %>
 					<p>Paid</p>

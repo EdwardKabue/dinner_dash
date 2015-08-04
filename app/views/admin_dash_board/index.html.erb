@@ -46,9 +46,9 @@
 								<%= link_to "Made #{time_ago_in_words(paid_order.created_at)} ago.", admin_dash_board_path(paid_order) %>
 							</td>
 							<td>
-								<%= link_to "Mark this order as completed.", mark_as_completed_admin_dash_board_path(paid_order), method: :put %>
+								<%= link_to "Mark this order as completed.", mark_order_as_completed_path(paid_order) %>
 							 	<i>or</i> 
-							 	<%= link_to "Cancel it.", cancel_admin_dash_board_path(paid_order), method: :put %>
+							 	<%= link_to "Cancel it.", cancel_order_path(paid_order) %>
 							</td>
 						</tr>
 					<% end %>	
