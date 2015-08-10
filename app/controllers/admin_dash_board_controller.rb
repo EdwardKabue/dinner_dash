@@ -24,7 +24,7 @@ class AdminDashBoardController < ApplicationController
 
 	def cancel
 	   @order = Order.find(params[:id])
-	   @order.update_attributes(:cancelled_at => Time.now, :cancelled => true, :ordered => false)
+	   @order.update_attributes(:cancelled_at => Time.now, :cancelled => true, :completed => false)
 	   flash[:notice] = "This order has been cancelled."
 	   redirect_to admin_dash_board_path(@order)
 	end 
